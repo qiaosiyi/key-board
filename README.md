@@ -8,7 +8,7 @@ stm32f103c8t6 based key board project
 ![image](https://img.alicdn.com/imgextra/i4/671845967/TB2YTfEndfJ8KJjy0FeXXXKEXXa_!!671845967.jpg)
 ![image](https://img.alicdn.com/imgextra/i3/671845967/TB2Va.Lnf6H8KJjSspmXXb2WXXa_!!671845967.jpg)
 # Download source code release
-we have release the stm32 framew source code version 1.1 in release block in 2018 jan 17.
+we have release the stm32 frameware source code version 1.1 in release block in 2018 jan 17.
 [download it in zip file](https://github.com/qiaosiyi/key-board/releases)
 # PCB design
 we will open source the PCB design and schematic diagram.

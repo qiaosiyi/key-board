@@ -30,79 +30,17 @@ void KEY_Init(void){
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
     GPIO_Init(GPIOC,&GPIO_InitStructure);
 }
-
-// u8 KeyDown(void)
-// {
-// 	if((GPIO_ReadInputData(GPIOC)&0xff)!=0x0f)//判断是否有键按下
-// 	{ //printf("%X\r\n",GPIO_ReadInputData(GPIOC));
-// 		//printf("keydown.\r\n");
-// 		return 1;//keydown
-// 	}
-// 	else {
-// 		//printf("NOeydown.\r\n");
-// 		return 0;
-// 	}
-
-// }
-void setrow0_0(void){
-	ROW0_0;ROW1_0;ROW2_0;ROW3_0;ROW4_0;ROW5_0;ROW6_0;ROW7_0;ROW8_0;ROW9_0;ROW10_0;ROW11_0;ROW12_0;ROW13_0;ROW14_0;ROW15_0;
-}
-
-void setrow0_1(void){
-	ROW0_1;ROW1_0;ROW2_0;ROW3_0;ROW4_0;ROW5_0;ROW6_0;ROW7_0;ROW8_0;ROW9_0;ROW10_0;ROW11_0;ROW12_0;ROW13_0;ROW14_0;ROW15_0;
-}
-void setrow1_1(void){
-	ROW0_0;ROW1_1;
-}
-void setrow2_1(void){
-	ROW1_0;ROW2_1;
-}
-void setrow3_1(void){
-	ROW2_0;ROW3_1;
-}
-void setrow4_1(void){
-	ROW3_0;ROW4_1;
-}
-void setrow5_1(void){
-	ROW4_0;ROW5_1;
-}
-void setrow6_1(void){
-	ROW5_0;ROW6_1;
-}
-void setrow7_1(void){
-	ROW6_0;ROW7_1;
-}
-void setrow8_1(void){
-	ROW7_0;ROW8_1;
-}
-void setrow9_1(void){
-	ROW8_0;ROW9_1;
-}
-void setrow10_1(void){
-	ROW9_0;ROW10_1;
-}
-void setrow11_1(void){
-	ROW10_0;ROW11_1;
-}
-void setrow12_1(void){
-	ROW11_0;ROW12_1;
-}
-void setrow13_1(void){
-	ROW12_0;ROW13_1;
-}
-void setrow14_1(void){
-	ROW13_0;ROW14_1;
-}
-void setrow15_1(void){
-	ROW14_0;ROW15_1;
-}
-void setrow16_1(void){
-	ROW0_1;ROW1_1;ROW2_1;ROW3_1;ROW4_1;ROW5_1;ROW6_1;ROW7_1;ROW8_1;ROW9_1;ROW10_1;ROW11_1;ROW12_1;ROW13_1;ROW14_1;ROW15_1;
-}
+void setrow0_0(void){ROW0_0;ROW1_0;ROW2_0;ROW3_0;ROW4_0;ROW5_0;ROW6_0;ROW7_0;ROW8_0;ROW9_0;ROW10_0;ROW11_0;ROW12_0;ROW13_0;ROW14_0;ROW15_0;}
+void setrow0_1(void){ROW0_1;ROW1_0;ROW2_0;ROW3_0;ROW4_0;ROW5_0;ROW6_0;ROW7_0;ROW8_0;ROW9_0;ROW10_0;ROW11_0;ROW12_0;ROW13_0;ROW14_0;ROW15_0;}
+void setrow1_1(void){ROW0_0;ROW1_1;}void setrow2_1(void){ROW1_0;ROW2_1;}void setrow3_1(void){ROW2_0;ROW3_1;}void setrow4_1(void){ROW3_0;ROW4_1;}
+void setrow5_1(void){ROW4_0;ROW5_1;}void setrow6_1(void){ROW5_0;ROW6_1;}void setrow7_1(void){ROW6_0;ROW7_1;}void setrow8_1(void){ROW7_0;ROW8_1;}
+void setrow9_1(void){ROW8_0;ROW9_1;}void setrow10_1(void){ROW9_0;ROW10_1;}void setrow11_1(void){ROW10_0;ROW11_1;}void setrow12_1(void){ROW11_0;ROW12_1;}
+void setrow13_1(void){ROW12_0;ROW13_1;}void setrow14_1(void){ROW13_0;ROW14_1;}void setrow15_1(void){ROW14_0;ROW15_1;}
+void setrow16_1(void){ROW0_1;ROW1_1;ROW2_1;ROW3_1;ROW4_1;ROW5_1;ROW6_1;ROW7_1;ROW8_1;ROW9_1;ROW10_1;ROW11_1;ROW12_1;ROW13_1;ROW14_1;ROW15_1;}
 
 u8 read_inputdata(void){//if any col has valid data////for example//////////////////////////////
 	static u8 byte[2] = {0,0};		
-	byte[0] = 0;						// col0 col1 col2 col3 col4 col5 col6 col7
+	byte[0] = 0;									// col0 col1 col2 col3 col4 col5 col6 col7
 	if(COL0){										//	0	 1	  0	   1	0	 0	  0	   0
 		byte[0] |= 0x80;//bit 1000 0000				///////////////////////////////////////////
 		byte[1]++;									//
@@ -146,39 +84,39 @@ u8 *Read_KeyValue(void){
 	for(i = 0; i < 16; i++){
 		byte[i] = 0x00;
 	}
-	setrow0_1();delay_us(100);temp_byte[0] |= read_inputdata();//get input col value	防抖动
-	setrow1_1();delay_us(100);temp_byte[1] |= read_inputdata();//get input col value	
-	setrow2_1();delay_us(100);temp_byte[2] |= read_inputdata();//get input col value	
-	setrow3_1();delay_us(100);temp_byte[3] |= read_inputdata();//get input col value	
-	setrow4_1();delay_us(100);temp_byte[4] |= read_inputdata();//get input col value	
-	setrow5_1();delay_us(100);temp_byte[5] |= read_inputdata();//get input col value	
-	setrow6_1();delay_us(100);temp_byte[6] |= read_inputdata();//get input col value	
-	setrow7_1();delay_us(100);temp_byte[7] |= read_inputdata();//get input col value	
-	setrow8_1();delay_us(100);temp_byte[8] |= read_inputdata();//get input col value	
-	setrow9_1();delay_us(100);temp_byte[9] |= read_inputdata();//get input col value	
-	setrow10_1();delay_us(100);temp_byte[10] |= read_inputdata();//get input col value	
-	setrow11_1();delay_us(100);temp_byte[11] |= read_inputdata();//get input col value	
-	setrow12_1();delay_us(100);temp_byte[12] |= read_inputdata();//get input col value	
-	setrow13_1();delay_us(100);temp_byte[13] |= read_inputdata();//get input col value	
-	setrow14_1();delay_us(100);temp_byte[14] |= read_inputdata();//get input col value	
-	setrow15_1();delay_us(100);temp_byte[15] |= read_inputdata();//get input col value	
+	setrow0_1();delay_us(50);temp_byte[0] |= read_inputdata();//get input col value	防抖动
+	setrow1_1();delay_us(50);temp_byte[1] |= read_inputdata();//get input col value	
+	setrow2_1();delay_us(50);temp_byte[2] |= read_inputdata();//get input col value	
+	setrow3_1();delay_us(50);temp_byte[3] |= read_inputdata();//get input col value	
+	setrow4_1();delay_us(50);temp_byte[4] |= read_inputdata();//get input col value	
+	setrow5_1();delay_us(50);temp_byte[5] |= read_inputdata();//get input col value	
+	setrow6_1();delay_us(50);temp_byte[6] |= read_inputdata();//get input col value	
+	setrow7_1();delay_us(50);temp_byte[7] |= read_inputdata();//get input col value	
+	setrow8_1();delay_us(50);temp_byte[8] |= read_inputdata();//get input col value	
+	setrow9_1();delay_us(50);temp_byte[9] |= read_inputdata();//get input col value	
+	setrow10_1();delay_us(50);temp_byte[10] |= read_inputdata();//get input col value	
+	setrow11_1();delay_us(50);temp_byte[11] |= read_inputdata();//get input col value	
+	setrow12_1();delay_us(50);temp_byte[12] |= read_inputdata();//get input col value	
+	setrow13_1();delay_us(50);temp_byte[13] |= read_inputdata();//get input col value	
+	setrow14_1();delay_us(50);temp_byte[14] |= read_inputdata();//get input col value	
+	setrow15_1();delay_us(50);temp_byte[15] |= read_inputdata();//get input col value	
 	setrow16_1();
-	setrow0_1();delay_us(100);byte[0] |= read_inputdata();//get input col value	
-	setrow1_1();delay_us(100);byte[1] |= read_inputdata();//get input col value	
-	setrow2_1();delay_us(100);byte[2] |= read_inputdata();//get input col value	
-	setrow3_1();delay_us(100);byte[3] |= read_inputdata();//get input col value	
-	setrow4_1();delay_us(100);byte[4] |= read_inputdata();//get input col value	
-	setrow5_1();delay_us(100);byte[5] |= read_inputdata();//get input col value	
-	setrow6_1();delay_us(100);byte[6] |= read_inputdata();//get input col value	
-	setrow7_1();delay_us(100);byte[7] |= read_inputdata();//get input col value	
-	setrow8_1();delay_us(100);byte[8] |= read_inputdata();//get input col value	
-	setrow9_1();delay_us(100);byte[9] |= read_inputdata();//get input col value	
-	setrow10_1();delay_us(100);byte[10] |= read_inputdata();//get input col value	
-	setrow11_1();delay_us(100);byte[11] |= read_inputdata();//get input col value	
-	setrow12_1();delay_us(100);byte[12] |= read_inputdata();//get input col value	
-	setrow13_1();delay_us(100);byte[13] |= read_inputdata();//get input col value	
-	setrow14_1();delay_us(100);byte[14] |= read_inputdata();//get input col value	
-	setrow15_1();delay_us(100);byte[15] |= read_inputdata();//get input col value	
+	setrow0_1();delay_us(50);byte[0] |= read_inputdata();//get input col value	
+	setrow1_1();delay_us(50);byte[1] |= read_inputdata();//get input col value	
+	setrow2_1();delay_us(50);byte[2] |= read_inputdata();//get input col value	
+	setrow3_1();delay_us(50);byte[3] |= read_inputdata();//get input col value	
+	setrow4_1();delay_us(50);byte[4] |= read_inputdata();//get input col value	
+	setrow5_1();delay_us(50);byte[5] |= read_inputdata();//get input col value	
+	setrow6_1();delay_us(50);byte[6] |= read_inputdata();//get input col value	
+	setrow7_1();delay_us(50);byte[7] |= read_inputdata();//get input col value	
+	setrow8_1();delay_us(50);byte[8] |= read_inputdata();//get input col value	
+	setrow9_1();delay_us(50);byte[9] |= read_inputdata();//get input col value	
+	setrow10_1();delay_us(50);byte[10] |= read_inputdata();//get input col value	
+	setrow11_1();delay_us(50);byte[11] |= read_inputdata();//get input col value	
+	setrow12_1();delay_us(50);byte[12] |= read_inputdata();//get input col value	
+	setrow13_1();delay_us(50);byte[13] |= read_inputdata();//get input col value	
+	setrow14_1();delay_us(50);byte[14] |= read_inputdata();//get input col value	
+	setrow15_1();delay_us(50);byte[15] |= read_inputdata();//get input col value	
 	setrow16_1();
 	while(temp_byte[0] != byte[0] | temp_byte[1] != byte[1] | temp_byte[2] != byte[2] | temp_byte[3] != byte[3] | 
 		temp_byte[4] != byte[4] | temp_byte[5] != byte[5] | temp_byte[6] != byte[6] | temp_byte[7] != byte[7] | 
@@ -188,22 +126,22 @@ u8 *Read_KeyValue(void){
 		for(i = 0; i < 16; i++){
 			temp_byte[i] = byte[i];
 		}
-		setrow0_1();delay_us(100);byte[0] |= read_inputdata();//get input col value	
-		setrow1_1();delay_us(100);byte[1] |= read_inputdata();//get input col value	
-		setrow2_1();delay_us(100);byte[2] |= read_inputdata();//get input col value	
-		setrow3_1();delay_us(100);byte[3] |= read_inputdata();//get input col value	
-		setrow4_1();delay_us(100);byte[4] |= read_inputdata();//get input col value	
-		setrow5_1();delay_us(100);byte[5] |= read_inputdata();//get input col value	
-		setrow6_1();delay_us(100);byte[6] |= read_inputdata();//get input col value	
-		setrow7_1();delay_us(100);byte[7] |= read_inputdata();//get input col value	
-		setrow8_1();delay_us(100);byte[8] |= read_inputdata();//get input col value	
-		setrow9_1();delay_us(100);byte[9] |= read_inputdata();//get input col value	
-		setrow10_1();delay_us(100);byte[10] |= read_inputdata();//get input col value	
-		setrow11_1();delay_us(100);byte[11] |= read_inputdata();//get input col value	
-		setrow12_1();delay_us(100);byte[12] |= read_inputdata();//get input col value	
-		setrow13_1();delay_us(100);byte[13] |= read_inputdata();//get input col value	
-		setrow14_1();delay_us(100);byte[14] |= read_inputdata();//get input col value	
-		setrow15_1();delay_us(100);byte[15] |= read_inputdata();//get input col value	
+		setrow0_1();delay_us(50);byte[0] |= read_inputdata();//get input col value	
+		setrow1_1();delay_us(50);byte[1] |= read_inputdata();//get input col value	
+		setrow2_1();delay_us(50);byte[2] |= read_inputdata();//get input col value	
+		setrow3_1();delay_us(50);byte[3] |= read_inputdata();//get input col value	
+		setrow4_1();delay_us(50);byte[4] |= read_inputdata();//get input col value	
+		setrow5_1();delay_us(50);byte[5] |= read_inputdata();//get input col value	
+		setrow6_1();delay_us(50);byte[6] |= read_inputdata();//get input col value	
+		setrow7_1();delay_us(50);byte[7] |= read_inputdata();//get input col value	
+		setrow8_1();delay_us(50);byte[8] |= read_inputdata();//get input col value	
+		setrow9_1();delay_us(50);byte[9] |= read_inputdata();//get input col value	
+		setrow10_1();delay_us(50);byte[10] |= read_inputdata();//get input col value	
+		setrow11_1();delay_us(50);byte[11] |= read_inputdata();//get input col value	
+		setrow12_1();delay_us(50);byte[12] |= read_inputdata();//get input col value	
+		setrow13_1();delay_us(50);byte[13] |= read_inputdata();//get input col value	
+		setrow14_1();delay_us(50);byte[14] |= read_inputdata();//get input col value	
+		setrow15_1();delay_us(50);byte[15] |= read_inputdata();//get input col value	
 		setrow16_1();
 	}
 	
@@ -237,7 +175,7 @@ u8 *map_2_key(u8 *read_byte){		//static u8 read_byte[16];
 	}
 	if(read_byte[2]){
 		if((read_byte[2] & 0x10) == 0x10){byte[i] = key_tab;i++;if(i == 7){return byte;}}
-		if((read_byte[2] & 0x08) == 0x08){byte[i] = key_wave;i++;if(i == 7){return byte;}}
+		if((read_byte[2] & 0x08) == 0x08){byte[i] = key_grave;i++;if(i == 7){return byte;}}
 		if((read_byte[2] & 0x04) == 0x04){byte[i] = key_1;i++;if(i == 7){return byte;}}
 		if((read_byte[2] & 0x02) == 0x02){byte[i] = key_q;i++;if(i == 7){return byte;}}
 		if((read_byte[2] & 0x01) == 0x01){byte[i] = key_a;i++;if(i == 7){return byte;}}
@@ -335,26 +273,27 @@ u8 *map_2_key(u8 *read_byte){		//static u8 read_byte[16];
 			byte[i] = 0;
 			fn = 1;
 		}
-		if(byte[i] == R_APP | byte[i] == R_APP){
+		if(byte[i] == R_APP | byte[i] == L_APP){
 			byte[i] = 0;
 			app = 1;
 		}
 	}
 	if(fn | app){//fn and app process
 		if(fn){
-			for(i = 1; i < 7; i++){//找到第一个其他按键键值
+			for(i = 1; i < 7; i++){//找到第一个其他按键键值，only response one fn function.返回给主发送程序。
 				if(byte[i]){
 					byte[1] = fn_fnc(byte[i]);
 					byte[2]=0;byte[3]=0;byte[4]=0;byte[5]=0;byte[6]=0;
+					break;
 				}
 			}
 		}
 		if(app){
-			for(i = 1; i < 7; i++){//找到第一个其他按键键值
+			for(i = 1; i < 7; i++){//找到第一个其他按键键值，不让主发送程序响应，因为主程序只能发送一次按键，app需要支持复杂字串发送
 				if(byte[i]){
-					app_fnc(byte[i]);
-					byte[1] = 0;
+					byte[1] = app_fnc(byte[i]);
 					byte[2]=0;byte[3]=0;byte[4]=0;byte[5]=0;byte[6]=0;
+					break;
 				}
 			}
 		}
@@ -406,8 +345,12 @@ u8 send_key(void){		//static u8 byte[7]
 	}else{//if key changed
 		// u3_printf("before_byte:%x %x %x %x %x %x %x \r\n",byte_before[0],byte_before[1],byte_before[2],byte_before[3],byte_before[4],byte_before[5],byte_before[6]);
 		// u3_printf("byte:	   %x %x %x %x %x %x %x \r\n",byte[0],byte[1],byte[2],byte[3],byte[4],byte[5],byte[6]);
-		
-
+		if(byte[1] >= APP1 && byte[1] <= APP7){
+			// if(byte[1] == APP1){mailbox();delay_ms(300);return 0;}
+			// if(byte[1] == APP2){password();delay_ms(300);return 0;}	
+			return 0;
+		}
+			
 		for(i = 1; i < 7; i++){//find if less ,if less, set byte_before to 0x00
 			less = 1;
 			for(j = 1; j < 7; j++){
@@ -423,7 +366,7 @@ u8 send_key(void){		//static u8 byte[7]
 		}
 		if(lesss == 1){
 			u3_printf("%x%x%x%x%x%x%x\r\n",byte_before[0],byte_before[1],byte_before[2],byte_before[3],byte_before[4],byte_before[5],byte_before[6]);
-			printf("%c%c%c%c%c%c%c%c%c%c%c%c",//shift+q
+			printf("%c%c%c%c%c%c%c%c%c%c%c%c",//
 					0x0c,0x00,0xa1,0x01,byte_before[0],0x00,
 					byte_before[1],byte_before[2],byte_before[3],byte_before[4],byte_before[5],byte_before[6]);
 		}
@@ -455,7 +398,7 @@ u8 send_key(void){		//static u8 byte[7]
 		if(moree == 0 && lesss ==0){//only ctl key changed
 			byte_before[0] = byte[0];
 			u3_printf("%x%x%x%x%x%x%x \r\n",byte_before[0],byte_before[1],byte_before[2],byte_before[3],byte_before[4],byte_before[5],byte_before[6]);
-			printf("%c%c%c%c%c%c%c%c%c%c%c%c",//shift+q
+			printf("%c%c%c%c%c%c%c%c%c%c%c%c",
 					0x0c,0x00,0xa1,0x01,byte_before[0],0x00,
 					byte_before[1],byte_before[2],byte_before[3],byte_before[4],byte_before[5],byte_before[6]);
 		}
@@ -472,24 +415,7 @@ void password(void){
 	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
 					0x0c,0x00,0xa1,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
 
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",//syok
-					0x0c,0x00,0xa1,0x01,0x00,0x00,key_s,key_y,key_o,key_k,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
 
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",//shift+2
-					0x0c,0x00,0xa1,0x01,0x02,0x00,key_2,0x00,0x00,0x00,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
-
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,key_3,key_5,key_1,key_9,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,key_9,key_0,0x00,0x00,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
 }
 
 void mailbox(void){
@@ -497,22 +423,7 @@ void mailbox(void){
 					0x0c,0x00,0xa1,0x01,0x00,0x00,key_q,key_s,key_y,key_2,key_0,key_1);
 	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
 					0x0c,0x00,0xa1,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,key_1,key_8,key_1,key_5,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x02,0x00,key_2,0x00,0x00,0x00,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,key_1,key_6,key_3,key_full_stop,key_c,key_o);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,key_m,0x00,0x00,0x00,0x00,0x00);
-	printf("%c%c%c%c%c%c%c%c%c%c%c%c",
-					0x0c,0x00,0xa1,0x01,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00);
+
 }
 
 void low_power(void){
@@ -550,7 +461,7 @@ void low_power(void){
 	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_14;
 	GPIO_Init(GPIOA,&GPIO_InitStructure);
 
-少时诵诗书所所所所所无所所所所所所所所所寻寻做寻做所寻寻做寻寻寻行政中心学生信息	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_15;
+	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_15;
 	GPIO_Init(GPIOA,&GPIO_InitStructure);
 /////////////////////////////////////////////////
 
@@ -636,12 +547,13 @@ u8 fn_fnc(u8 key){
 }
 u8 app_fnc(u8 key){
 	u8 key_out = 0;
-
-	if(key == key_a){
-		
-		delay_ms(1000);
-		return 0;
-	}
+	if(key == key_1){return APP1;}
+	if(key == key_2){return APP2;}
+	if(key == key_3){return APP3;}
+	if(key == key_4){return APP4;}
+	if(key == key_5){return APP5;}
+	if(key == key_6){return APP6;}
+	if(key == key_7){return APP7;}
 
 	return key_out;
 }

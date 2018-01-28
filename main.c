@@ -58,7 +58,7 @@ void ScanKeyBoard(void){
 
 		}
 	} 
-	
+	 
 }
 
 
@@ -68,7 +68,7 @@ int main(void){
 
 	u32 waittime=0;
 	u16 adcx=0;
-	u16 times=0;
+	u32 times=0;
 	u8 keymap_pre[128];
 	u8 keymap_now[128];
 	u8 * resault;
@@ -80,7 +80,7 @@ int main(void){
 	uart_init(9600);
 	usart3_init(115200);
 	LED_Init();
-	//WKUP_Init();
+	WKUP_Init();
 	WAKEUP_BLT_Init();
 	KEY_Init();
 	Adc_Init();
@@ -94,13 +94,33 @@ int main(void){
 	setrow0_0();
 	setrow16_1();
 	while(1){
+		if(KeyDown() && WAKEUP == 1){
+			waittime = 0;//将等待时间清零
+		}else if(KeyDown() && WAKEUP == 0){//如果有按键按下,而且蓝牙待机
+			waittime = 0;//将等待时间清零
+			if(OPENBLT){
+				WAKEUP=1;//蓝牙开启
+			}else{
+				WAKEUP=0;//不开启蓝牙
+			}	
+			delay_ms(20);//等待蓝牙启动成功
+		}else if(!KeyDown()){//如果没有按键被按下，等待时间加1个单位，1个单位按10ms计算
+			if(WAKEUP==1){//如果蓝牙开机，才开始算等待时间
+				waittime++;
+			}
+		}
+		if(waittime%100==1){
+			u3_printf("runing..\r\n");
+			u3_printf("t=%d\r\n",waittime);
+		}
+		if(waittime>=60000){//X10ms进入休眠，如果进入休眠比蓝牙待机时间早，则蓝牙同时也会被待机
+			u3_printf("Enter standby..\r\n");
+			Sys_Enter_Standby();
+		}
 		send_key();
-		
-		
-		
 		delay_ms(10);
 		//u3_printf("times:%d\r\n", times);
-		//times++;
+
 	}
 }
 

@@ -261,7 +261,7 @@ u8 *map_2_key(u8 *read_byte){		//static u8 read_byte[16];
 		if((read_byte[14] & 0x08) == 0x08){byte[i] = key_equal;i++;if(i == 7){return byte;}}
 		if((read_byte[14] & 0x04) == 0x04){byte[i] = key_backspace;i++;if(i == 7){return byte;}}
 		if((read_byte[14] & 0x02) == 0x02){byte[i] = key_brace2;i++;if(i == 7){return byte;}}
-		if((read_byte[14] & 0x01) == 0x01){byte[i] = key_menu;i++;if(i == 7){return byte;}}
+		if((read_byte[14] & 0x01) == 0x01){byte[i] = key_app;i++;if(i == 7){return byte;}}
 	}
 	if(read_byte[15]){
 		if((read_byte[15] & 0x40) == 0x40){byte[i] = key_right;i++;if(i == 7){return byte;}}
@@ -278,6 +278,13 @@ u8 *map_2_key(u8 *read_byte){		//static u8 read_byte[16];
 			app = 1;
 		}
 	}
+
+	if(byte[0] == R_Alt || byte[0] == L_Alt){
+		if(byte[1] == key_4 && byte[2] == 0x00 && byte[3] == 0x00 && byte[4] == 0x00 && byte[5] == 0x00 && byte[6] == 0x00){
+			byte[1] = key_F4;
+		}
+	}
+
 	if(fn | app){//fn and app process
 		if(fn){
 			for(i = 1; i < 7; i++){//找到第一个其他按键键值，only response one fn function.返回给主发送程序。

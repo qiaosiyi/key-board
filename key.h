@@ -229,7 +229,7 @@ void tmp(void);
 #define key_9n 0x61
 #define key_0n 0x62
 #define key_dot 0x63
-#define key_dot 0x63
+#define key_app 0x65
 #define key_menu 0x76
 #define mute 0x7f
 #define vol_up 0x80

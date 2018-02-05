@@ -13,4 +13,4 @@ we have release the stm32 frameware source code version 1.1 in release block in 
 # PCB design
 We have just open source the PCB design and schematic diagram version1.11 in release block in 2018 feb 5. [download PCB SCH FILES](https://github.com/qiaosiyi/key-board/files/1693680/pcbreleasev1.1.zip)
 # steel plate design
-we will open source the steel plate CAD file.
+we will open source the steel plate CAD file. 

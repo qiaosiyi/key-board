@@ -9,26 +9,9 @@
 #include "usart3.h"	
 #define OPENBLT 1
 
-
-void map_init(u8 *keymap){
-	int i = 0;
-	for(i = 0 ; i < 128; i++){
-		keymap[i] = 0;
-	}
-}
-
-u8 comp_map(u8 *a, u8 *b){
-	return 1; //a != b
-	return 0;
-}
-
 u8 KeyDown(void)
 {	
-	// u3_printf("%x  ",COL0);u3_printf("%x  ",COL1);u3_printf("%x  ",COL3);
-	// u3_printf("%x  ",COL4);u3_printf("%x  ",COL5);u3_printf("%x  ",COL6);
-	// u3_printf("%x\r\n",COL7);
-	// u3_printf("COL0 | COL1 | COL2 | COL3 | COL4 | COL5 | COL6 | COL7 = %d\r\n",
-	// 			COL0 | COL1 | COL2 | COL3 | COL4 | COL5 | COL6 | COL7 );
+
 	if(COL0 | COL1 | COL2 | COL3 | COL4 | COL5 | COL6 | COL7 )//判断是否有键按下
 	{ 
 		// u3_printf("KeyDown.\r\n");

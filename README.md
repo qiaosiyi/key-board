@@ -1,5 +1,7 @@
 # key-board
 stm32f103c8t6 based key board project
+
+For more back ground information, https://www.zhihu.com/question/265112599/answer/297843217
 # key arrangement 
 ![image](https://images2017.cnblogs.com/blog/921211/201801/921211-20180117181028834-390364139.png)
 # final product
